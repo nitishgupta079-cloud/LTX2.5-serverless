@@ -84,6 +84,9 @@ RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
     && find /opt/venv -type d -name __pycache__ -prune -exec rm -rf '{}' + \
     && find /opt/venv -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 
+    RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
+    python -m pip install "kornia==0.6.12"
+
 ARG COMFY_WORKFLOW_TEMPLATES_REF=c74863f87d56b57265cfce844ab00b127c32e137
 ARG LTX25_EDITOR_WORKFLOW_SHA256=bcd3239835e8e5bf287a664954c253c67cd31147a4a4193ef5975525e246a7a0
 RUN wget -nv \
